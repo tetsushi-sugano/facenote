@@ -1,10 +1,7 @@
 Rails.application.routes.draw do
+  resources :topics, only: [:index, :new, :create, :edit, :update, :destroy]
+  root'top#index'
 
-
-  resources :blogs do
-    resources :comments
-    post :confirm, on: :collection
-  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

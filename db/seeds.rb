@@ -6,16 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 20.times do |n|
-  name = Faker::LordOfTheRings.character
-  email = Faker::Internet.email
-  password = Faker::Internet.password
-  uid = SecureRandom.uuid
-  User.create!(id: n,
-               email: email,
-               password: password,
-               name: name,
-               uid: uid
-               )
+name = Faker::LordOfTheRings.character
+email = Faker::Internet.email
+password = Faker::Internet.password
+uid = SecureRandom.uuid
+User.create(
+id: n,
+name: name,
+email: email,
+password: password,
+uid: uid
+)
 end
 
 n = 1

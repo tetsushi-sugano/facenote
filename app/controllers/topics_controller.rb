@@ -1,8 +1,14 @@
 class TopicsController < ApplicationController
-  before_action :set_topic, only: [:edit, :update, :destroy]
+  before_action :authenticate_user!
+  before_action :set_topic, only: [:show, :edit, :update, :destroy]
 
   def index
     @topics = Topic.all
+  end
+
+  def show
+    @comment = @topic.comments.build
+    @comments = @topic.comments
   end
 
   def new
@@ -11,8 +17,10 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(topic_params)
+    @topic.user_id = current_user.id
     if @topic.save
       redirect_to topics_path, notice: "トピックを作成しました。"
+      NoticeMailer.sendmail_topic(@topic).deliver
     else
       render 'new'
     end

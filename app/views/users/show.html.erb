@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+<div class="child row">
+  <div class="wrapper col-md-6 col-md-offset-3 col-sm-10 col-sm-offset-1">
+
+    <p><%= @user.name %></p>
+        <div class="row">
+    <p>フォロワー一覧</p>
+        <%= render 'follower_form', user: @user %>
+        </div>
+            <div class="row">
+    <p>フォローしているユーザー一覧</p>
+        <%= render 'followed_user_form', user: @user %>
+        </div>
+    </div>
+  </div>
+</div>

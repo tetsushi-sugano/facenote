@@ -1,0 +1,6 @@
+<% user.followers.each do |follower| %>
+  <div class="col-md-4 photo">
+  <p><%= profile_img(follower) %></p>
+  <p><%= follower.name %></p>
+  </div>
+<% end %>

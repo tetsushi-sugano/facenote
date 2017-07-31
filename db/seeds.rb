@@ -11,7 +11,6 @@ email = Faker::Internet.email
 password = Faker::Internet.password
 uid = SecureRandom.uuid
 User.create(
-id: n,
 name: name,
 email: email,
 password: password,
@@ -19,20 +18,10 @@ uid: uid
 )
 end
 
-n = 1
-while n <= 20
-  Topic.create(
-    title: "あいうえお",
-    content: "かきくけこ",
-    user_id: n
-  )
-  n = n + 1
-end
-
 3.times do |i|
-  topic = Topic.new(content: 'トピック', user_id: i + 1)
+  topic = Topic.new(title: 'ああああ', content: 'トピック', user_id: i + 1)
   2.times do
-    topic.comments.build(content: 'コメント')
+    topic.comments.build(content: 'コメント', user_id: i + 1)
   end
   topic.save
 end

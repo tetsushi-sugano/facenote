@@ -1,4 +1,5 @@
 class CommentsController < ApplicationController
+  before_action :set_comment, only: [:edit, :update, :destroy]
   # コメントを保存、投稿するためのアクションです。
   def create
     # topicをパラメータの値から探し出し,topicに紐づくcommentsとしてbuildします。
@@ -25,6 +26,17 @@ class CommentsController < ApplicationController
     end
   end
 
+  def edit
+  end
+
+  def update
+    if @comment.update(comment_params)
+      redirect_to topic_path(@topic)
+    else
+      render :edit
+    end
+  end
+
   def destroy
   	@comment = Comment.find(params[:id])
   	@comment.destroy
@@ -44,5 +56,10 @@ class CommentsController < ApplicationController
     # ストロングパラメーター
     def comment_params
       params.require(:comment).permit(:topic_id, :content)
+    end
+
+    def set_comment
+      @comment = Comment.find(params[:id])
+      @topic = @comment.topic
     end
 end
